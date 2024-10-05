@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Data from Excel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Main Heading</h1>
+    <h2>Subheading</h2>
+
+    <!-- Status Message -->
+    <p id="uploadStatus">Loading Excel data...</p>
+
+    <!-- 5 tables placeholders -->
+    <div id="tables-container">
+        <div class="table-wrapper">
+            <h3>Table 1</h3>
+            <table id="table1">
+                <thead>
+                    <tr><th>Col 1</th><th>Col 2</th><th>Col 3</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="table-wrapper">
+            <h3>Table 2</h3>
+            <table id="table2">
+                <thead>
+                    <tr><th>Col 1</th><th>Col 2</th><th>Col 3</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="table-wrapper">
+            <h3>Table 3</h3>
+            <table id="table3">
+                <thead>
+                    <tr><th>Col 1</th><th>Col 2</th><th>Col 3</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="table-wrapper">
+            <h3>Table 4</h3>
+            <table id="table4">
+                <thead>
+                    <tr><th>Col 1</th><th>Col 2</th><th>Col 3</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="table-wrapper">
+            <h3>Table 5</h3>
+            <table id="table5">
+                <thead>
+                    <tr><th>Col 1</th><th>Col 2</th><th>Col 3</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SheetJS library for parsing Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
