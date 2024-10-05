@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/1C4w0y7DJBe3mE8Ejys5M1QJ0BlfOrz8D2iJjctj9Ot4/edit?usp=drive_link:csv';
+    const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/1C4w0y7DJBe3mE8Ejys5M1QJ0BlfOrz8D2iJjctj9Ot4/gviz/tq?tqx=out:csv';
 
     // Fetch the CSV data from Google Sheets
     fetch(googleSheetUrl)
