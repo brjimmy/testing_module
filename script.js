@@ -10,25 +10,30 @@ document.addEventListener("DOMContentLoaded", function() {
             // Now parse the CSV data into rows and columns
             const rows = csvData.split("\n");  // Split into rows by new lines
 
-            // Assuming we want to divide rows across multiple tables
-            let tableIndex = 1;  // Start with table 1
-            const rowsPerTable = 3;  // Set how many rows should go into each table
+            // Define how many rows go into each table
+            const table1Rows = rows.slice(1, 4); // Rows 1 to 3 go to table1
+            const table2Rows = rows.slice(4, 7); // Rows 4 to 6 go to table2
+            const table3Rows = rows.slice(7, 10); // Rows 7 to 9 go to table3
 
-            rows.forEach((row, index) => {
-                const cells = row.split(",");  // Split each row into columns
-
-                // Skip the first row if it's the header, otherwise populate the current table
-                if (index > 0 && cells.length === 3) {  // Assuming 3 columns
-                    // Determine which table to populate based on row index
-                    const currentTableId = `table${tableIndex}`;
-                    populateTableRow(currentTableId, cells);
-
-                    // Move to the next table after a certain number of rows
-                    if ((index % rowsPerTable) === 0) {
-                        tableIndex++;
-                    }
-                }
+            // Populate Table 1
+            table1Rows.forEach(row => {
+                const cells = row.split(","); // Split into columns
+                populateTableRow('table1', cells); // Populate Table 1
             });
+
+            // Populate Table 2
+            table2Rows.forEach(row => {
+                const cells = row.split(","); // Split into columns
+                populateTableRow('table2', cells); // Populate Table 2
+            });
+
+            // Populate Table 3
+            table3Rows.forEach(row => {
+                const cells = row.split(","); // Split into columns
+                populateTableRow('table3', cells); // Populate Table 3
+            });
+
+            // Add more tables similarly if needed
         })
         .catch(error => {
             console.error("Error fetching Google Sheet:", error);
