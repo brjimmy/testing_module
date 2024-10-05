@@ -1,39 +1,37 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const excelFileUrl = './tables_data.xlsx'; // Relative path to the Excel file in the same directory
+    const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/1C4w0y7DJBe3mE8Ejys5M1QJ0BlfOrz8D2iJjctj9Ot4/edit?usp=drive_link:csv';
 
-    // Automatically fetch the Excel file when the page loads
-    fetch(excelFileUrl)
-        .then(response => response.arrayBuffer())
-        .then(data => {
-            const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
-
-            // Assuming the tables are in sheets Table1 to Table5
-            for (let tableNum = 1; tableNum <= 5; tableNum++) {
-                const worksheet = workbook.Sheets[`Table${tableNum}`];
-                if (worksheet) {
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-                    populateTable(jsonData, `table${tableNum}`);
+    // Fetch the CSV data from Google Sheets
+    fetch(googleSheetUrl)
+        .then(response => response.text())
+        .then(csvData => {
+            // Here, parse the CSV data and populate the tables
+            console.log(csvData); // For now, log the CSV data to the console
+            const rows = csvData.split("\n");  // Split CSV rows
+            rows.forEach((row, index) => {
+                const cells = row.split(",");  // Split cells by comma
+                // Populate your HTML table as per your structure
+                if (index > 0 && cells.length === 3) { // Skip the header row, assuming 3 columns
+                    populateTableRow('table1', cells); // Assuming you are filling 'table1', adjust as needed
                 }
-            }
-            document.getElementById('uploadStatus').textContent = "Tables updated successfully!";
+            });
         })
         .catch(error => {
-            document.getElementById('uploadStatus').textContent = "Error loading Excel file!";
-            console.error("Error fetching Excel file:", error);
+            console.error("Error fetching Google Sheet:", error);
         });
 
-    // Function to populate the table with the parsed Excel data
-    function populateTable(data, tableId) {
+    // Function to populate a specific table row
+    function populateTableRow(tableId, rowData) {
         const tableBody = document.querySelector(`#${tableId} tbody`);
-        tableBody.innerHTML = "";  // Clear existing table content
-        data.forEach(rowData => {
-            const row = document.createElement('tr');
-            rowData.forEach(cellData => {
-                const cell = document.createElement('td');
-                cell.textContent = cellData;
-                row.appendChild(cell);
-            });
-            tableBody.appendChild(row);
+        const row = document.createElement('tr');
+        rowData.forEach(cellData => {
+            const cell = document.createElement('td');
+            cell.textContent = cellData;
+            row.appendChild(cell);
         });
+        tableBody.appendChild(row);
     }
 });
+
+
+
